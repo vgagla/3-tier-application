@@ -91,8 +91,8 @@ jobs:
       - name: Apply deployments
         run: |
           kubectl apply -f postgres-deployment.yaml
-          kubectl apply -f backend-deployment.yaml
-          kubectl apply -f frontend-deployment.yaml
+          kubectl apply -f api-deployment.yaml
+          kubectl apply -f ui-deployment.yaml
 
       - name: Set images to new tag
         run: |
