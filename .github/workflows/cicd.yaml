@@ -90,7 +90,7 @@ jobs:
 
       - name: Apply deployments
         run: |
-          kubectl apply -f postgres-deployment.yaml
+          kubectl apply -f postgres-statefulset.yaml
           kubectl apply -f api-deployment.yaml
           kubectl apply -f ui-deployment.yaml
 
@@ -102,7 +102,7 @@ jobs:
 
       - name: Wait for rollouts
         run: |
-          kubectl -n "$K8S_NAMESPACE" rollout status deploy/postgres-deployment  --timeout=120s
+          kubectl -n "$K8S_NAMESPACE" rollout status sts/postgres-deployment --timeout=120s
           kubectl -n "$K8S_NAMESPACE" rollout status deploy/api-deployment  --timeout=120s
           kubectl -n "$K8S_NAMESPACE" rollout status deploy/ui-deployment --timeout=120s
 
