@@ -18,19 +18,15 @@ spec:
         image: vijayagagla123/basic3tier-api:latest
         ports:
         - containerPort: 80
-        env:
-        - name: ConnectionStrings__Basic3Tier
-          value: "Host=postgres-service.3-tier-app.svc.cluster.local;Port=5432;Database=basic3tier;Username=$(POSTGRES_USER);Password=$(POSTGRES_PASSWORD)"
-        - name: POSTGRES_USER
-          valueFrom:
-            secretKeyRef:
-              name: db-credentials
-              key: POSTGRES_USER
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-credentials
-              key: POSTGRES_PASSWORD
+        volumeMounts:
+          - name: db-secret-volume
+            mountPath: "/etc/secrets"
+            readOnly: true
+      volumes:
+        - name: db-secret-volume
+          secret:
+            secretName: db-credentials
+
 ---
 apiVersion: v1
 kind: Service
