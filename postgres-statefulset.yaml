@@ -51,6 +51,13 @@ spec:
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
+            - name: db-secret-volume
+              mountPath: "/etc/secrets"
+              readOnly: true
+      volumes:
+        - name: db-secret-volume
+          secret:
+            secretName: db-credentials
 
   volumeClaimTemplates:
     - metadata:
