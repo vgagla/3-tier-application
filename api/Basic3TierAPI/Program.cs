@@ -12,8 +12,10 @@ builder.Services.AddSwaggerGen();
 // 1) Pull the connection string from appsettings.json, 
 //    OR from environment variable named "ConnectionStrings__Basic3Tier" if present.
 //var connString = builder.Configuration.GetValue<string>("ConnectionStrings:Basic3Tier");
-var user = Environment.GetEnvironmentVariable("POSTGRES_USER");
-var password = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+//var user = Environment.GetEnvironmentVariable("POSTGRES_USER");
+//var password = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+var user = File.ReadAllText("/etc/secrets/POSTGRES_USER").Trim();
+var password = File.ReadAllText("/etc/secrets/POSTGRES_PASSWORD").Trim();
 
 var connString =
     $"Host=postgres-service;Database=basic3tier;Username={user};Password={password}";
