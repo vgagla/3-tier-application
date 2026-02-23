@@ -21,7 +21,7 @@ spec:
         # Optional environment variable if using dynamic config
         env:
           - name: API_URL
-            value: "https://a44a9004f5b534ecf82dae6b9b9e7523-114387700.eu-central-1.elb.amazonaws.com/"
+            value: "http://a44a9004f5b534ecf82dae6b9b9e7523-114387700.eu-central-1.elb.amazonaws.com/"
 ---
 apiVersion: v1
 kind: Service
