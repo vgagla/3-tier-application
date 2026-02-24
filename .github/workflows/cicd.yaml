@@ -90,9 +90,9 @@ jobs:
 
       - name: Apply deployments
         run: |
-          kubectl apply -f postgres-statefulset.yaml
-          kubectl apply -f api-deployment.yaml
-          kubectl apply -f ui-deployment.yaml
+          kubectl apply -f k8s/postgres-statefulset.yaml
+          kubectl apply -f k8s/api-deployment.yaml
+          kubectl apply -f k8s/ui-deployment.yaml
 
       - name: Set images to new tag
         run: |
